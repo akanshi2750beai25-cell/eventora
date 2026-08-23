@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+eval1/node_modules/
+eval2/node_modules/
+
+# Production Builds
+dist/
+eval1/dist/
+eval2/dist/
+
+# Logs & Environment
+*.log
+.env
+.env.local
+
+# OS Generated
+.DS_Store
+Thumbs.db

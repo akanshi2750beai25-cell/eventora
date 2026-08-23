@@ -1,0 +1,23 @@
+{
+  "name": "eventora",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite eval1",
+    "dev:eval1": "vite eval1",
+    "dev:eval2": "vite eval2",
+    "build": "vite build eval1",
+    "build:eval1": "vite build eval1",
+    "build:eval2": "vite build eval2"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "canvas-confetti": "^1.9.4",
+    "lucide-react": "^1.33.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest",
+    "vite": "latest"
+  }
+}
