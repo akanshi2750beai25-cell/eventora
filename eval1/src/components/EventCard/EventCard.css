@@ -212,24 +212,6 @@
   color: var(--text-secondary);
 }
 
-/* ---- Tags row ---- */
-.event-card-tags {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-top: 2px;
-}
-
-.event-card-tag {
-  font-size: 0.7rem;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: var(--bg-input);
-  color: var(--text-muted);
-  border: 1px solid var(--border-color);
-}
-
-/* ---- Footer: Price + Actions ---- */
 .event-card-footer {
   display: flex;
   align-items: center;
@@ -263,26 +245,3 @@
   color: var(--primary-teal-light);
 }
 
-/* ---- Sold Out Overlay ---- */
-.event-card-sold-out {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 15, 28, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.event-card-sold-out span {
-  background: var(--accent-rose);
-  color: #fff;
-  font-weight: 800;
-  font-size: 0.85rem;
-  padding: 6px 16px;
-  border-radius: 999px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transform: rotate(-10deg);
-}

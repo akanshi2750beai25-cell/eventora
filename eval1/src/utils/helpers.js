@@ -1,8 +1,6 @@
 /**
- * =====================================================
  * helpers.js — Mridul Bhardwaj (Eval 1)
  * Utility functions for EVENTORA Search & Discovery
- * =====================================================
  */
 
 /* ─────────────────────────────────────────────────────
@@ -152,35 +150,22 @@ export function filterEventsByBudget(events, budget) {
   });
 }
 
-/* ─────────────────────────────────────────────────────
-   10. searchEvents
-   Full-text keyword search across multiple event fields
-   @param {Array}  events
-   @param {string} query
-   @returns {Array}
-──────────────────────────────────────────────────────── */
+/** 10. searchEvents — full-text search across title, category, city, venue, description, organizer, tags */
 export function searchEvents(events, query) {
   if (!query || !query.trim()) return events;
   const q = query.toLowerCase().trim();
-  return events.filter((event) => {
-    return (
-      event.title?.toLowerCase().includes(q) ||
-      event.category?.toLowerCase().includes(q) ||
-      event.city?.toLowerCase().includes(q) ||
-      event.venue?.toLowerCase().includes(q) ||
-      event.description?.toLowerCase().includes(q) ||
-      event.organizer?.name?.toLowerCase().includes(q) ||
-      event.tags?.some((tag) => tag.toLowerCase().includes(q))
-    );
-  });
+  return events.filter((event) =>
+    event.title?.toLowerCase().includes(q) ||
+    event.category?.toLowerCase().includes(q) ||
+    event.city?.toLowerCase().includes(q) ||
+    event.venue?.toLowerCase().includes(q) ||
+    event.description?.toLowerCase().includes(q) ||
+    event.organizer?.name?.toLowerCase().includes(q) ||
+    event.tags?.some((tag) => tag.toLowerCase().includes(q))
+  );
 }
 
-/* ─────────────────────────────────────────────────────
-   11. getEventCategoryCounts
-   Build a { categoryName: count } map from an events array
-   @param {Array} events
-   @returns {Object}
-──────────────────────────────────────────────────────── */
+/** 11. getEventCategoryCounts — { categoryName: count } map from events array */
 export function getEventCategoryCounts(events) {
   return events.reduce((acc, event) => {
     const cat = event.category || 'Other';
@@ -189,71 +174,7 @@ export function getEventCategoryCounts(events) {
   }, {});
 }
 
-/* ─────────────────────────────────────────────────────
-   12. getTopCities
-   Return an array of unique city names from events
-   @param {Array} events
-   @returns {string[]}
-──────────────────────────────────────────────────────── */
+/** 12. getTopCities — unique sorted city list from events */
 export function getTopCities(events) {
-  const cities = events.map((e) => e.city).filter(Boolean);
-  return [...new Set(cities)].sort();
-}
-
-/* ─────────────────────────────────────────────────────
-   13. formatRelativeDate
-   Return a human-friendly relative date string
-   @param {string} dateStr
-   @returns {string}  e.g. "Tomorrow", "In 5 days", "Yesterday"
-──────────────────────────────────────────────────────── */
-export function formatRelativeDate(dateStr) {
-  const days = getDaysUntil(dateStr);
-  if (days === null) return '';
-  if (days === 0)  return 'Today';
-  if (days === 1)  return 'Tomorrow';
-  if (days === -1) return 'Yesterday';
-  if (days > 1 && days <= 30) return `In ${days} days`;
-  if (days < -1)  return `${Math.abs(days)} days ago`;
-  return formatDate(dateStr);
-}
-
-/* ─────────────────────────────────────────────────────
-   14. calculateDiscount
-   Calculate discounted price for student promo codes
-   @param {number} price
-   @param {string} code
-   @returns {{ discountedPrice: number, savings: number, valid: boolean }}
-──────────────────────────────────────────────────────── */
-const PROMO_CODES = {
-  STUDENT50:  0.50,
-  CAMPUS2026: 0.20,
-  FEST10:     0.10,
-};
-
-export function calculateDiscount(price, code) {
-  if (!code || !price || price === 0) {
-    return { discountedPrice: price, savings: 0, valid: false };
-  }
-  const rate = PROMO_CODES[code.toUpperCase()];
-  if (!rate) {
-    return { discountedPrice: price, savings: 0, valid: false };
-  }
-  const savings         = Math.round(price * rate);
-  const discountedPrice = price - savings;
-  return { discountedPrice, savings, valid: true };
-}
-
-/* ─────────────────────────────────────────────────────
-   15. groupEventsByDate
-   Group an events array into { dateStr: [event, ...] }
-   @param {Array} events
-   @returns {Object}
-──────────────────────────────────────────────────────── */
-export function groupEventsByDate(events) {
-  return events.reduce((groups, event) => {
-    const key = event.date || 'Unknown';
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(event);
-    return groups;
-  }, {});
+  return [...new Set(events.map((e) => e.city).filter(Boolean))].sort();
 }
