@@ -1,14 +1,28 @@
 import './EventCard.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Calendar, Clock, MapPin, Heart, Star, Users, ArrowRight } from 'lucide-react';
+import { Calendar, Clock, MapPin, Heart, Star, Users, ArrowRight, Tag } from 'lucide-react';
 import { useEvents } from '../../context/EventContext';
-import { formatPrice, formatDate } from '../../utils/helpers';
+import { formatPrice, formatDate, truncateText } from '../../utils/helpers';
 
+/**
+ * EventCard — Mridul Bhardwaj (Eval 1)
+ * Reusable card with badges, price formatting, 
+ * favourite toggle, seats urgency indicator, and CTA.
+ *
+ * Props:
+ *  event  {object}  — Event data object
+ *  layout {string}  — 'grid' (default) | 'compact'
+ */
 export default function EventCard({ event, layout = 'grid' }) {
   const { toggleWishlist, isWishlisted } = useEvents();
   const navigate = useNavigate();
-  const isFav = isWishlisted(event.id);
+  const isFav    = isWishlisted(event.id);
+  const isSoldOut = event.availableSeats === 0;
+  const isLowSeats = !isSoldOut && event.availableSeats < 20;
+
+  // Local hover state to highlight card
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleFavoriteClick = (e) => {
     e.preventDefault();
@@ -23,8 +37,13 @@ export default function EventCard({ event, layout = 'grid' }) {
   };
 
   return (
-    <article className="event-card animate-fade-in" aria-label={event.title}>
-      {/* Media Thumbnail */}
+    <article
+      className="event-card animate-fade-in"
+      aria-label={event.title}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* ── Media Thumbnail ── */}
       <div className="event-card-media">
         <img
           src={event.image}
@@ -32,8 +51,15 @@ export default function EventCard({ event, layout = 'grid' }) {
           className="event-card-img"
           loading="lazy"
         />
-        
-        {/* Floating Badges */}
+
+        {/* Sold-Out overlay */}
+        {isSoldOut && (
+          <div className="event-card-sold-out">
+            <span>Sold Out</span>
+          </div>
+        )}
+
+        {/* Floating Badges (top-left) */}
         <div className="event-card-badges">
           <span className="badge">{event.category}</span>
           {event.isTrending && (
@@ -44,7 +70,7 @@ export default function EventCard({ event, layout = 'grid' }) {
           )}
         </div>
 
-        {/* Favorite Heart Button */}
+        {/* Favourite Heart Button (top-right) */}
         <button
           type="button"
           className={`event-card-fav ${isFav ? 'active' : ''}`}
@@ -54,10 +80,18 @@ export default function EventCard({ event, layout = 'grid' }) {
         >
           <Heart size={18} fill={isFav ? '#ffffff' : 'transparent'} />
         </button>
+
+        {/* Low Seats Warning (bottom of image) */}
+        {isLowSeats && (
+          <div className="event-card-seats-bar">
+            <span className="seats-low">⚡ Only {event.availableSeats} seats left!</span>
+          </div>
+        )}
       </div>
 
-      {/* Card Content Body */}
+      {/* ── Card Body ── */}
       <div className="event-card-body">
+
         {/* Date & Time Chips */}
         <div className="event-card-meta">
           <div className="event-card-meta-item">
@@ -83,25 +117,35 @@ export default function EventCard({ event, layout = 'grid' }) {
           </span>
         </div>
 
-        {/* Seats & Rating Bar */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.82rem', marginTop: '4px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--accent-gold)' }}>
+        {/* Rating & Seats Row */}
+        <div className="event-card-stats">
+          <div className="event-card-rating">
             <Star size={14} fill="var(--accent-gold)" color="var(--accent-gold)" />
-            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{event.rating || 5.0}</span>
-            <span style={{ color: 'var(--text-muted)' }}>({event.reviewsCount || 0})</span>
+            <span>{event.rating || 5.0}</span>
+            <small>({event.reviewsCount || 0})</small>
           </div>
-          
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: event.availableSeats < 25 ? 'var(--accent-rose)' : 'var(--text-secondary)' }}>
-            <Users size={14} />
-            <span>{event.availableSeats} seats left</span>
+          <div className={`event-card-seats ${isLowSeats ? 'low-seats' : 'normal-seats'}`}>
+            <Users size={13} />
+            <span>{isSoldOut ? 'Sold Out' : `${event.availableSeats} seats`}</span>
           </div>
         </div>
 
-        {/* Card Footer: Price & Actions */}
+        {/* Tags (up to 3) */}
+        {event.tags && event.tags.length > 0 && (
+          <div className="event-card-tags">
+            {event.tags.slice(0, 3).map((tag) => (
+              <span key={tag} className="event-card-tag">#{tag}</span>
+            ))}
+          </div>
+        )}
+
+        {/* Footer: Price + CTA Buttons */}
         <div className="event-card-footer">
           <div className="event-card-price">
-            <span className="event-card-price-label">Price per person</span>
-            <span className="event-card-price-val">{formatPrice(event.price)}</span>
+            <span className="event-card-price-label">Per Person</span>
+            <span className={`event-card-price-val ${event.price === 0 ? 'free' : ''}`}>
+              {formatPrice(event.price)}
+            </span>
           </div>
 
           <div style={{ display: 'flex', gap: '8px' }}>
@@ -111,10 +155,12 @@ export default function EventCard({ event, layout = 'grid' }) {
             <button
               onClick={handleBookClick}
               className="btn btn-primary btn-sm"
-              disabled={event.availableSeats === 0}
+              disabled={isSoldOut}
+              aria-disabled={isSoldOut}
+              title={isSoldOut ? 'This event is sold out' : `Book ${event.title}`}
             >
-              {event.availableSeats === 0 ? 'Sold Out' : 'Book'}
-              <ArrowRight size={14} />
+              {isSoldOut ? 'Sold Out' : 'Book'}
+              {!isSoldOut && <ArrowRight size={14} />}
             </button>
           </div>
         </div>

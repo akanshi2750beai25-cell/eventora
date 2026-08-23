@@ -1,1 +1,269 @@
-/* Styles for FilterPanel Component */
+/* =============================================
+   FilterPanel Component — Mridul Bhardwaj (Eval 1)
+   ============================================= */
+
+/* ---- Sidebar Panel ---- */
+.filter-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  height: fit-content;
+  position: sticky;
+  top: 90px;
+}
+
+/* ---- Panel Header ---- */
+.filter-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.filter-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+
+.filter-panel-reset {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s, background 0.2s;
+}
+
+.filter-panel-reset:hover {
+  color: var(--accent-rose);
+  background: rgba(244, 63, 94, 0.08);
+}
+
+/* ---- Section Separator ---- */
+.filter-divider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 16px 0;
+}
+
+/* ---- Section Label ---- */
+.filter-section-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+/* ---- Radio Options (Budget) ---- */
+.filter-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-radio-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: var(--radius-md);
+  transition: background 0.2s ease, color 0.2s ease;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+}
+
+.filter-radio-option:hover {
+  background: var(--bg-input);
+}
+
+.filter-radio-option.selected {
+  background: rgba(45, 212, 191, 0.08);
+  border-color: rgba(45, 212, 191, 0.35);
+  color: var(--primary-teal-light);
+  font-weight: 700;
+}
+
+.filter-radio-option input[type="radio"] {
+  accent-color: var(--primary-teal);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ---- Category Pill Buttons ---- */
+.filter-category-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filter-category-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  background: none;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.filter-category-pill:hover {
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.filter-category-pill.selected {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.4);
+  color: var(--primary-purple);
+  font-weight: 700;
+}
+
+.filter-category-pill-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-category-count {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--bg-input);
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ---- Select Dropdowns ---- */
+.filter-select {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px;
+}
+
+.filter-select:focus {
+  border-color: var(--primary-teal);
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.12);
+}
+
+/* ---- Toggle Checkbox (Available Only) ---- */
+.filter-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  gap: 10px;
+}
+
+.filter-toggle-row:hover {
+  border-color: var(--primary-teal);
+}
+
+.filter-toggle-label {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+  user-select: none;
+  flex: 1;
+}
+
+/* Custom toggle switch */
+.toggle-switch {
+  position: relative;
+  width: 38px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--border-color);
+  border-radius: 999px;
+  transition: background 0.25s ease;
+  cursor: pointer;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 3px;
+  top: 3px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.25s ease;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background: var(--primary-teal);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(16px);
+}
+
+/* ---- Active Filters Count Badge ---- */
+.filter-active-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary-teal);
+  color: var(--bg-primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  margin-left: 6px;
+}

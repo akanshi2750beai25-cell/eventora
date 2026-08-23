@@ -1,1 +1,210 @@
-/* Styles for SearchBar Component */
+/* =============================================
+   SearchBar Component — Mridul Bhardwaj (Eval 1)
+   ============================================= */
+
+/* ---- Outer Container (card-like bar) ---- */
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-xl, 14px);
+  padding: 8px 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  flex-wrap: nowrap;
+  overflow: visible;
+}
+
+.search-bar-container:focus-within {
+  border-color: var(--primary-teal);
+  box-shadow: 0 4px 28px rgba(45, 212, 191, 0.18);
+}
+
+/* ---- Keyword Input Section ---- */
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+  padding: 4px 8px;
+}
+
+.search-input-wrap input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: inherit;
+  min-width: 0;
+}
+
+.search-input-wrap input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ---- Clear Button (inside input) ---- */
+.search-clear-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 50%;
+  transition: color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.search-clear-btn:hover {
+  color: var(--accent-rose);
+  background: rgba(244, 63, 94, 0.08);
+}
+
+/* ---- Vertical Dividers ---- */
+.search-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--border-color);
+  margin: 0 6px;
+  flex-shrink: 0;
+}
+
+/* ---- Category & City Select Sections ---- */
+.search-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  flex-shrink: 0;
+}
+
+.search-select-wrap select {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-family: inherit;
+  cursor: pointer;
+  padding-right: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-select-wrap select option {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+/* ---- Submit Button ---- */
+.search-bar-container .btn {
+  flex-shrink: 0;
+  margin-left: 6px;
+}
+
+/* ---- Suggestions Dropdown ---- */
+.search-suggestions {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  overflow: hidden;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.search-suggestion-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  transition: background 0.15s;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.search-suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.search-suggestion-item:hover,
+.search-suggestion-item.highlighted {
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.search-suggestion-type {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--bg-input);
+  color: var(--text-muted);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ---- Recent Searches Section ---- */
+.search-recent {
+  padding: 10px 16px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ---- Mobile Responsive ---- */
+@media (max-width: 768px) {
+  .search-bar-container {
+    flex-wrap: wrap;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .search-input-wrap {
+    width: 100%;
+  }
+
+  .search-divider {
+    display: none;
+  }
+
+  .search-select-wrap {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .search-select-wrap select {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .search-bar-container .btn {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
