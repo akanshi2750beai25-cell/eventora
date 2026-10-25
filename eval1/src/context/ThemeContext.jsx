@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';//All of them can access the theme without passing props through every component.
 
 const ThemeContext = createContext();
 
@@ -8,7 +8,7 @@ export function ThemeProvider({ children }) {
       const savedTheme = localStorage.getItem('eventora_theme');
       return savedTheme ? savedTheme : 'dark';
     } catch {
-      return 'dark';
+      return 'dark';//It means React will execute this function when the state is initially created to determine the starting value.
     }
   });
 
@@ -19,7 +19,7 @@ export function ThemeProvider({ children }) {
     } catch (e) {
       console.warn('LocalStorage error:', e);
     }
-  }, [theme]);
+  }, [theme]);//is called the dependency array.
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
