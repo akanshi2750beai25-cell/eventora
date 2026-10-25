@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { formatDate, formatPrice } from '../../utils/helpers';
 import { useEvents } from '../../context/EventContext';
+import QRCodeDisplay from '../QRCodeDisplay/QRCodeDisplay';
 
 export default function DigitalTicket({ booking }) {
   const { showToast } = useEvents();
@@ -119,16 +120,16 @@ export default function DigitalTicket({ booking }) {
             </div>
           </div>
 
-          {/* QR Code Visual Box */}
-          <div className="ticket-qr-section">
-            <div className="ticket-qr-code">
-              {/* QR Pattern visual */}
-              <QrCode size={76} strokeWidth={2.2} />
-              <span style={{ letterSpacing: '0.5px' }}>{booking.bookingId}</span>
-            </div>
-            <small style={{ color: '#64748b', fontSize: '0.72rem', marginTop: '8px', fontWeight: 600 }}>
-              Scan at Venue Entrance
-            </small>
+          {/* Real Scannable QR Code */}
+          <div className="ticket-qr-section" style={{ background: 'transparent', padding: 0, border: 'none' }}>
+            <QRCodeDisplay
+              value={`EVENTORA|${booking.bookingId}|${booking.eventTitle}|${booking.attendeeName}|${booking.ticketTier}`}
+              size={130}
+              label="Gate Entry Pass"
+              subtext="Scan at venue checkpoint"
+              type="ticket"
+              showCopy={true}
+            />
           </div>
         </div>
 

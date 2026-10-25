@@ -24,6 +24,7 @@ import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import GroupBooking from './pages/GroupBooking/GroupBooking';
 import NotFound from './pages/NotFound/NotFound';
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/event/:id" element={<EventDetails />} />
           <Route path="/booking/:id" element={<Booking />} />
+          <Route path="/group-booking/:id" element={<GroupBooking />} />
           <Route path="/ticket/:id" element={<Ticket />} />
           <Route path="/my-bookings" element={<MyBookings />} />
           <Route path="/wishlist" element={<Wishlist />} />
