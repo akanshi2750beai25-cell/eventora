@@ -24,6 +24,9 @@ import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import Notifications from './pages/Notifications/Notifications';
+import OrganizerDashboard from './pages/Organizer/OrganizerDashboard';
+import AdminDashboard from './pages/Admin/AdminDashboard';
 import NotFound from './pages/NotFound/NotFound';
 
 export default function App() {
@@ -42,6 +45,9 @@ export default function App() {
           <Route path="/ticket/:id" element={<Ticket />} />
           <Route path="/my-bookings" element={<MyBookings />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/organizer/dashboard" element={<OrganizerDashboard />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

@@ -3,14 +3,15 @@ import React, { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { 
   Sparkles, Heart, Ticket, User, 
-  Menu, X, LogOut, ChevronDown, BookOpen 
+  Menu, X, LogOut, ChevronDown, BookOpen,
+  Bell, Building2, ShieldCheck
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useEvents } from '../../context/EventContext';
 
 export default function Navbar() {
   const { user, isAuthenticated, logout } = useAuth();
-  const { wishlist, bookings } = useEvents();
+  const { wishlist, bookings, unreadNotificationCount } = useEvents();
   const navigate = useNavigate();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -56,6 +57,17 @@ export default function Navbar() {
 
           {/* Right Actions: Wishlist, Bookings, User Menu */}
           <div className="nav-actions">
+            {/* Notifications Link with Badge */}
+            <Link
+              to="/notifications"
+              className="nav-icon-btn"
+              aria-label="View Notifications"
+              title="Campus Notifications & Alerts"
+            >
+              <Bell size={18} color="var(--text-secondary)" />
+              {unreadNotificationCount > 0 && <span className="nav-badge-count">{unreadNotificationCount}</span>}
+            </Link>
+
             {/* Wishlist Link with Badge */}
             <Link
               to="/wishlist"
@@ -134,6 +146,33 @@ export default function Navbar() {
                     >
                       <Heart size={16} />
                       <span>My Wishlist ({wishlist.length})</span>
+                    </Link>
+
+                    <Link
+                      to="/notifications"
+                      className="user-menu-item"
+                      onClick={() => setUserDropdownOpen(false)}
+                    >
+                      <Bell size={16} />
+                      <span>Notifications ({unreadNotificationCount})</span>
+                    </Link>
+
+                    <Link
+                      to="/organizer/dashboard"
+                      className="user-menu-item"
+                      onClick={() => setUserDropdownOpen(false)}
+                    >
+                      <Building2 size={16} color="var(--primary-teal-light)" />
+                      <span>Organizer Dashboard</span>
+                    </Link>
+
+                    <Link
+                      to="/admin/dashboard"
+                      className="user-menu-item"
+                      onClick={() => setUserDropdownOpen(false)}
+                    >
+                      <ShieldCheck size={16} color="var(--accent-gold)" />
+                      <span>Admin Control Panel</span>
                     </Link>
 
                     <hr style={{ border: 'none', borderTop: '1px solid var(--border-color)', margin: '6px 0' }} />
