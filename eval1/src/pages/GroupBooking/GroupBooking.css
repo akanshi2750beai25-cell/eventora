@@ -1,0 +1,24 @@
+/* Group Booking & Bill-Splitting Styles */
+.group-booking-page .step-badge {
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.group-booking-page .step-badge.active {
+  background: var(--primary-teal);
+  color: #ffffff;
+  border-color: var(--primary-teal);
+  box-shadow: 0 2px 8px var(--primary-teal-glow);
+}
+
+.group-booking-page .step-line {
+  width: 24px;
+  height: 1px;
+  background: var(--border-color);
+}
