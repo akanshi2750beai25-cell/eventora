@@ -16,3 +16,7 @@ eval2/dist/
 # OS Generated
 .DS_Store
 Thumbs.db
+
+# Archives & Root Lockfile
+eval1.zip
+package-lock.json
