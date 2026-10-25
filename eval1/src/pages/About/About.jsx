@@ -16,7 +16,7 @@ export default function About() {
   ];
 
   const teamMembers = [
-    { name: 'Akanshi Sharma', role: 'Team Lead & Full Stack Developer', branch: 'B.E. CSE (AI & ML)' },
+    { name: 'Akanshi Gupta', role: 'Team Lead & Full Stack Developer', branch: 'B.E. CSE (AI & ML)' },
     { name: 'Project Collaborator', role: 'UI/UX & Component Architecture', branch: 'B.E. CSE (AI & ML)' },
     { name: 'Project Collaborator', role: 'State Management & Algorithm Design', branch: 'B.E. CSE (AI & ML)' }
   ];
@@ -59,16 +59,7 @@ export default function About() {
           </p>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
-            {techStack.map((tech, idx) => (
-              <div key={idx} style={{ padding: '16px', background: 'var(--bg-surface)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-                <strong style={{ fontSize: '0.95rem', color: 'var(--primary-teal-light)', display: 'block', marginBottom: '4px' }}>
-                  {tech.name}
-                </strong>
-                <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.5, display: 'block' }}>
-                  {tech.desc}
-                </span>
-              </div>
-            ))}
+          
           </div>
         </div>
 
