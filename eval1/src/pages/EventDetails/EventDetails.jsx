@@ -162,15 +162,27 @@ export default function EventDetails() {
                   <span style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--primary-teal-light)' }}>{formatPrice(event.price)}</span>
                 </div>
 
-                <button
-                  onClick={() => navigate(`/booking/${event.id}`)}
-                  className="btn btn-primary btn-lg"
-                  style={{ flex: 1 }}
-                  disabled={event.availableSeats === 0}
-                >
-                  <Ticket size={20} />
-                  <span>{event.availableSeats === 0 ? 'Sold Out' : 'Book Student Passes'}</span>
-                </button>
+                <div style={{ display: 'flex', gap: '10px', flex: 1, flexWrap: 'wrap' }}>
+                  <button
+                    onClick={() => navigate(`/booking/${event.id}`)}
+                    className="btn btn-primary btn-lg"
+                    style={{ flex: 1, minWidth: '160px', fontWeight: 700 }}
+                    disabled={event.availableSeats === 0}
+                  >
+                    <Ticket size={18} />
+                    <span>{event.availableSeats === 0 ? 'Sold Out' : 'Book Pass'}</span>
+                  </button>
+
+                  <button
+                    onClick={() => navigate(`/group-booking/${event.id}`)}
+                    className="btn btn-outline btn-lg"
+                    style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 700, borderColor: 'var(--primary-teal-light)', color: 'var(--primary-teal-light)' }}
+                    disabled={event.availableSeats < 2}
+                  >
+                    <Users size={18} />
+                    <span>Group Booking & Split</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

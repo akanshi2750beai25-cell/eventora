@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Ticket, Calendar, Clock, MapPin, QrCode, 
-  Trash2, AlertTriangle, ArrowRight, CheckCircle2 
+  Trash2, AlertTriangle, ArrowRight, CheckCircle2, Printer, Users, FileText
 } from 'lucide-react';
 import { useEvents } from '../../context/EventContext';
-import { formatDate, formatPrice } from '../../utils/helpers';
+import { formatDate, formatPrice, printPdfReceipt } from '../../utils/helpers';
 import Modal from '../../components/Modal/Modal';
 
 export default function MyBookings() {
@@ -92,6 +92,12 @@ export default function MyBookings() {
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', flexWrap: 'wrap' }}>
                       <span className="badge">{booking.category || 'Event'}</span>
+                      {booking.isGroupBooking && (
+                        <span className="badge badge-purple" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                          <Users size={12} />
+                          <span>Group of {booking.quantity}</span>
+                        </span>
+                      )}
                       <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-muted)' }}>
                         ID: {booking.bookingId}
                       </span>
@@ -101,6 +107,11 @@ export default function MyBookings() {
                       >
                         {booking.status}
                       </span>
+                      {booking.refundStatus && (
+                        <span className="badge badge-gold" style={{ fontSize: '0.7rem' }}>
+                          Refund: {booking.refundStatus}
+                        </span>
+                      )}
                     </div>
 
                     <h3 style={{ fontSize: '1.25rem', marginBottom: '10px', color: 'var(--text-primary)' }}>
@@ -123,7 +134,12 @@ export default function MyBookings() {
                     </div>
 
                     <div style={{ marginTop: '12px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                      Seats: <strong style={{ color: 'var(--primary-teal-light)' }}>{booking.selectedSeats?.join(', ') || 'General Admission'}</strong> ({booking.quantity}x tickets) • Total Paid: <strong style={{ color: 'var(--text-primary)' }}>{formatPrice(booking.totalAmount)}</strong>
+                      Tier: <strong style={{ color: 'var(--primary-teal-light)' }}>{booking.ticketTier || 'Student Pass'}</strong> ({booking.quantity}x passes) • Total Paid: <strong style={{ color: 'var(--text-primary)' }}>{formatPrice(booking.totalAmount)}</strong>
+                      {booking.groupName && (
+                        <span style={{ display: 'block', marginTop: '4px', color: 'var(--text-secondary)' }}>
+                          Group Name: <strong>{booking.groupName}</strong>
+                        </span>
+                      )}
                     </div>
                   </div>
 
@@ -136,6 +152,16 @@ export default function MyBookings() {
                       <QrCode size={15} />
                       <span>View Pass / QR</span>
                     </Link>
+
+                    <button
+                      type="button"
+                      onClick={() => printPdfReceipt(booking)}
+                      className="btn btn-outline btn-sm"
+                      title="Download PDF Invoice / Receipt"
+                    >
+                      <Printer size={14} />
+                      <span>PDF Receipt</span>
+                    </button>
 
                     {!isCancelled && (
                       <button

@@ -16,7 +16,7 @@ export const categories = [
     emoji: "🎵",
     description: "Live concerts, indie acoustics, EDM nights, and campus bands.",
     image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80",
-    color: "#8b5cf6"
+    color: "#a78bfa"
   },
   {
     id: "sports",
@@ -34,7 +34,7 @@ export const categories = [
     emoji: "🎓",
     description: "Academic seminars, career guidance, and research conferences.",
     image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
-    color: "#3b82f6"
+    color: "#60a5fa"
   },
   {
     id: "workshops",
@@ -61,7 +61,7 @@ export const categories = [
     emoji: "💼",
     description: "Startup pitch arenas, investor meetups, and founder summits.",
     image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80",
-    color: "#14b8a6"
+    color: "#7c3aed"
   },
   {
     id: "movies",
@@ -69,7 +69,7 @@ export const categories = [
     icon: "Film",
     emoji: "🎬",
     description: "Indie film screenings, campus cinema marathons, and documentaries.",
-    image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=800&q=80",
     color: "#6366f1"
   },
   {
@@ -80,5 +80,14 @@ export const categories = [
     description: "Stand-up comedy, magic shows, open mic, and food festivals.",
     image: "https://images.unsplash.com/photo-1585699324551-f6c309eedeca?auto=format&fit=crop&w=800&q=80",
     color: "#f43f5e"
+  },
+  {
+    id: "lifestyle",
+    name: "Lifestyle",
+    icon: "Heart",
+    emoji: "🌿",
+    description: "Food carnivals, wellness retreats, yoga sessions, and hobby fests.",
+    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80",
+    color: "#34d399"
   }
 ];

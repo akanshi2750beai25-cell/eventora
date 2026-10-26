@@ -1,6 +1,6 @@
 /* ==========================================================================
    EVENTORA MAIN STYLESHEET
-   Demonstrating CSS3 Box Model, Flexbox, Grid, Custom Properties & Transitions
+   Premium Purple × Cyan Theme — CSS3 Flexbox, Grid, Custom Properties, Transitions
    ========================================================================== */
 
 @import './variables.css';
@@ -109,7 +109,7 @@ ul, ol {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: var(--primary-teal-light);
+  color: var(--primary-purple-light);
   margin-bottom: 8px;
 }
 
@@ -198,13 +198,14 @@ ul, ol {
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  box-shadow: 0 4px 12px var(--primary-teal-glow);
+  box-shadow: 0 4px 16px var(--primary-purple-glow);
 }
 
 .nav-brand span {
-  background: var(--gradient-primary);
+  background: var(--gradient-purple-pink);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .nav-links-desktop {
@@ -231,8 +232,8 @@ ul, ol {
 }
 
 .nav-link-item.active {
-  color: var(--primary-teal-light);
-  background: var(--badge-bg);
+  color: var(--primary-purple-light);
+  background: var(--badge-purple-bg);
 }
 
 .nav-actions {
@@ -257,16 +258,16 @@ ul, ol {
 }
 
 .nav-icon-btn:hover {
-  color: var(--text-primary);
-  border-color: var(--primary-teal);
-  background: var(--bg-card-hover);
+  color: var(--primary-purple-light);
+  border-color: var(--primary-purple);
+  background: var(--badge-purple-bg);
 }
 
 .nav-badge-count {
   position: absolute;
   top: -4px;
   right: -4px;
-  background: var(--primary-purple);
+  background: var(--gradient-purple-pink);
   color: #ffffff;
   font-size: 0.65rem;
   font-weight: 800;
@@ -296,7 +297,8 @@ ul, ol {
 }
 
 .user-avatar-btn:hover {
-  border-color: var(--primary-teal);
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 2px var(--primary-purple-glow);
 }
 
 .user-avatar-circle {
@@ -439,7 +441,7 @@ ul, ol {
 }
 
 .footer-links-list a:hover {
-  color: var(--primary-teal-light);
+  color: var(--primary-purple-light);
 }
 
 .footer-bottom {

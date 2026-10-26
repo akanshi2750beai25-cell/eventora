@@ -1,0 +1,207 @@
+/* QR Code Display Component Styles */
+.qr-display-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px;
+  background: #ffffff;
+  border-radius: var(--radius-lg, 16px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  max-width: 320px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.qr-display-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* Paytm Theme */
+.qr-paytm-theme {
+  border-top: 4px solid #00b9f5;
+  background: #ffffff;
+}
+
+.qr-paytm-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #cbd5e1;
+}
+
+.paytm-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #002970;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.paytm-pill-pay {
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: -0.5px;
+}
+
+.paytm-pill-tm {
+  color: #00baf2;
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: -0.5px;
+}
+
+.paytm-pill-text {
+  color: #94a3b8;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-left: 4px;
+}
+
+.qr-paytm-amount {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #002e6e;
+}
+
+/* Ticket Theme */
+.qr-ticket-theme {
+  border-top: 4px solid #6366f1;
+}
+
+.qr-ticket-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #4f46e5;
+  margin-bottom: 10px;
+  background: #eef2ff;
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+.qr-shield-icon {
+  color: #4f46e5;
+}
+
+/* QR Code Image Box */
+.qr-code-box {
+  background: #ffffff;
+  border: 3px solid #0f172a;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.qr-image {
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.qr-svg-fallback {
+  border-radius: 4px;
+}
+
+.qr-center-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.paytm-mini-badge {
+  background: #002e6e;
+  color: #00b9f5;
+  font-size: 0.6rem;
+  font-weight: 900;
+  padding: 2px 5px;
+  border-radius: 4px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.eventora-mini-badge {
+  background: #4f46e5;
+  color: #ffffff;
+  font-size: 0.6rem;
+  font-weight: 900;
+  padding: 2px 5px;
+  border-radius: 4px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Footer & Copy */
+.qr-footer {
+  margin-top: 12px;
+  width: 100%;
+}
+
+.qr-label-text {
+  font-size: 0.88rem;
+  color: #0f172a;
+  display: block;
+}
+
+.qr-subtext {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.qr-value-pill {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qr-value-pill:hover {
+  background: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+.qr-code-string {
+  font-family: monospace;
+  font-weight: 700;
+}
+
+.copy-icon {
+  color: #64748b;
+}
+
+.copy-success-icon {
+  color: #10b981;
+}
+
+.copy-hint {
+  font-size: 0.7rem;
+  color: #64748b;
+}

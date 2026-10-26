@@ -1,0 +1,5 @@
+/* Notifications Center Styles */
+.notification-card:hover {
+  transform: translateX(3px);
+  border-color: var(--border-color-hover);
+}

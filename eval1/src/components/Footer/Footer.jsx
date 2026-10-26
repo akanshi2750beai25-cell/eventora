@@ -1,15 +1,15 @@
 import './Footer.css';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Sparkles, Mail, Send, Heart, Shield, Code, Phone, MapPin } from 'lucide-react';
+import React, { useState } from 'react';//react hook ma sotre hoti ha when we need to change the data
+import { Link } from 'react-router-dom';//link is provided by the eact route 
+import { Sparkles, Mail, Send, Heart, Shield, Code, Phone, MapPin } from 'lucide-react';//Lucide React icon library.
 import { useEvents } from '../../context/EventContext';
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const { showToast } = useEvents();
+  const [email, setEmail] = useState('');// email fpr store set email for change the value 
+  const { showToast } = useEvents();// return the data func form ur event 
 
-  const handleSubscribe = (e) => {
-    e.preventDefault();
+  const handleSubscribe = (e) => {// run when the newest form submited
+    e.preventDefault(); // stops the default behaviour
     if (!email || !email.includes('@')) {
       showToast('Please enter a valid college email address', 'error');
       return;
@@ -18,9 +18,9 @@ export default function Footer() {
     setEmail('');
   };
 
-  return (
-    <footer className="footer-wrapper">
-      <div className="container">
+  return (//returns the UI that should appear on the screen.
+    <footer className="footer-wrapper">//s React's way of assigning a CSS class.
+      <div className="container">//container around the footer content
         <div className="footer-grid">
           {/* Brand & Mission Column */}
           <div className="footer-brand">
@@ -36,7 +36,7 @@ export default function Footer() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <MapPin size={14} color="var(--primary-teal-light)" />
-                <span>Chandigarh • Mohali • Panchkula Campuses</span>
+                <span>Chandigarh • Mohali •Ludhiana • Panchkula Campuses</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Mail size={14} color="var(--primary-purple)" />
